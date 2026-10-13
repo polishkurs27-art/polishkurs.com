@@ -1,0 +1,31 @@
+{
+  "site": {
+    "url": "https://polishkurs.com",
+    "brand": "polishkurs",
+    "domain": "polishkurs.com"
+  },
+  "social": {
+    "handle": "@polishkurs",
+    "youtube": "https://www.youtube.com/@polishkurs",
+    "instagram": "https://www.instagram.com/polishkurs/"
+  },
+  "form": {
+    "endpoint": "https://api.web3forms.com/submit",
+    "accessKey": "c5ae6fe6-5460-4639-a6fd-f3b6e89b6f82"
+  },
+  "youtube": {
+    "channelId": "UCy-WJ9EjKtL2wXiH9ra4-8A",
+    "count": 6,
+    "fallback": ["35cF4rLWiis", "nfuMs8Y9Idk", "5f5YAVziqeg", "IglC1GtLzqg", "7eUYBt7SLnM", "OTAVyleZCNc"]
+  },
+  "online": "Zoom / Teams",
+  "offers": {
+    "individual": [
+      { "level": "B1", "price": ["80 PLN", "1000 UAH"] },
+      { "level": "B2", "price": ["100 PLN", "1200 UAH"] }
+    ],
+    "evening": {
+      "price": ["300 PLN", "3600 UAH"]
+    }
+  }
+}

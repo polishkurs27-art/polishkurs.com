@@ -1,0 +1,96 @@
+{
+  "code": "pl",
+  "htmlLang": "pl",
+  "dir": "",
+  "label": "PL",
+  "meta": {
+    "title": "Kurs TELC polski online | Przygotowanie do egzaminu TELC B1/B2",
+    "description": "Kurs przygotowawczy do egzaminu TELC z języka polskiego. Małe grupy, szybkie przygotowanie, zajęcia online. Zapisz się na najbliższy termin.",
+    "keywords": "kurs TELC, egzamin TELC polski, kurs polskiego online, przygotowanie TELC B1 B2, kurs języka polskiego",
+    "ogTitle": "Kurs TELC polski online — przygotuj się szybko do egzaminu",
+    "ogDescription": "Małe grupy, intensywne przygotowanie i realne wyniki. Zapisz się na najbliższy kurs TELC B1/B2.",
+    "ogLocale": "pl_PL"
+  },
+  "nav": {
+    "course": "Kurs",
+    "offers": "Terminy i ceny",
+    "about": "O mnie",
+    "videos": "Wideo",
+    "contact": "Kontakt",
+    "menu": "Menu",
+    "skip": "Przejdź do treści",
+    "language": "Język"
+  },
+  "hero": {
+    "sloganA": "Zdam, bo",
+    "sloganB": "znam!",
+    "lead": "Kurs przygotowawczy do egzaminu TELC. Małe grupy (3–4 osoby)",
+    "cta": "Zapisz się",
+    "online": "Zajęcia online",
+    "name": "Irena Górska"
+  },
+  "course": {
+    "title": "W ramach kursu:",
+    "items": [
+      "poznasz typowe zadania egzaminacyjne",
+      "wykonasz próbny egzamin TELC B1/B2",
+      "dowiesz się w praktyce, jak poprawnie opisywać zdjęcia i odpowiadać na dodatkowe pytania",
+      "przygotujesz 4 testowe prezentacje w części ustnej egzaminu",
+      "poznasz zasady pisania maili i napiszesz 2 maile formalne i 2 nieformalne",
+      "przećwiczysz sposoby prowadzenia dyskusji"
+    ]
+  },
+  "offers": {
+    "title": "Zapisz się",
+    "note": "Zostaw zgłoszenie — od razu prześlemy dostępne terminy kursów",
+    "individual": {
+      "title": "Zajęcia indywidualne",
+      "text": {
+        "B1": "TELC, Egzamin Państwowy oraz język polski dla każdego poziomu zaawansowania.",
+        "B2": "TELC, Egzamin Państwowy."
+      },
+      "cta": "Zapisz się"
+    },
+    "evening": {
+      "title": "Kurs wieczorowy",
+      "text": "TELC B1, B2",
+      "details": ["pięć lekcji × 90 min", "wtorek i czwartek"],
+      "cta": "Zapisz się"
+    }
+  },
+  "about": {
+    "title": "Kurs prowadzi",
+    "greeting": "Witaj!",
+    "paragraphs": [
+      "Nazywam się Irena Górska. Jestem lektorką języka polskiego w Warszawie i online.",
+      "==Od ponad 15 lat== z przyjemnością dzielę się swoją wiedzą.",
+      "Ukończyłam studia doktoranckie na Uniwersytecie Marii Curie-Skłodowskiej w Lublinie.",
+      "Przygotowuję uczniów do egzaminu TELC, Egzaminu Państwowego oraz do rozmów kwalifikacyjnych na studia.",
+      "Prowadzę zajęcia grupowe i indywidualne na wszystkich poziomach zaawansowania.",
+      "==Ponad 100 moich uczniów co roku== zdaje egzaminy, studiuje i pracuje w Polsce."
+    ]
+  },
+  "videos": {
+    "title": "Wideo",
+    "lead": "YouTube Shorts i Instagram Reels",
+    "play": "Odtwórz wideo"
+  },
+  "contact": {
+    "titleA": "Masz pytanie?",
+    "titleB": "Napisz śmiało"
+  },
+  "forms": {
+    "signupTitle": "Zapisz się",
+    "signupLead": "Wypełnij formularz — skontaktujemy się z Tobą",
+    "name": "Imię",
+    "email": "Adres e-mail",
+    "phone": "Telefon",
+    "message": "Wiadomość",
+    "signupSubmit": "Zapisz się",
+    "questionSubmit": "Wyślij wiadomość",
+    "sending": "Wysyłanie…",
+    "success": "Dziękuję! Wiadomość została wysłana.",
+    "error": "Nie udało się wysłać wiadomości. Spróbuj ponownie.",
+    "close": "Zamknij"
+  }
+}

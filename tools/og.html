@@ -1,0 +1,37 @@
+<!doctype html>
+<!-- Source of the 1200x630 link-preview image (src/assets/og.png). Render with tools/og.sh -->
+<html lang="pl">
+<meta charset="utf-8">
+<link rel="stylesheet" href="../src/styles.css">
+<style>
+  @font-face{font-family:"Brygada 1918";font-weight:400 700;src:url(../src/assets/fonts/brygada-1918-latin-wght-normal.woff2)}
+  @font-face{font-family:"Brygada 1918";font-weight:400 700;src:url(../src/assets/fonts/brygada-1918-latin-ext-wght-normal.woff2);unicode-range:U+0100-02BA}
+  @font-face{font-family:"Brygada 1918";font-style:italic;font-weight:400 700;src:url(../src/assets/fonts/brygada-1918-latin-wght-italic.woff2)}
+  @font-face{font-family:"Brygada 1918";font-style:italic;font-weight:400 700;src:url(../src/assets/fonts/brygada-1918-latin-ext-wght-italic.woff2);unicode-range:U+0100-02BA}
+  @font-face{font-family:"Caveat";font-weight:400 700;src:url(../src/assets/fonts/caveat-latin-wght-normal.woff2)}
+  @font-face{font-family:"Caveat";font-weight:400 700;src:url(../src/assets/fonts/caveat-latin-ext-wght-normal.woff2);unicode-range:U+0100-02BA}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{position:relative;background:var(--paper)}
+  body::before{content:"";position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:30px 30px}
+  .og{position:absolute;inset:0;display:grid;grid-template-columns:1fr 330px;gap:50px;align-items:center;padding:40px 80px 0 70px}
+  .og__brand{position:absolute;left:70px;top:44px;display:flex;align-items:center;gap:14px;font:700 34px/1 var(--serif)}
+  .og__brand svg{width:50px;height:50px}
+  h1{margin-top:30px;font:700 142px/.9 var(--serif);letter-spacing:-.025em;white-space:nowrap}
+  .swipe::before{animation:none}
+  .snap{width:330px;margin-top:10px;animation:none}
+  .snap figcaption{font-size:34px;padding:8px 0 6px}
+</style>
+<body>
+  <div class="og__brand">
+    <svg viewBox="0 0 64 64"><rect width="64" height="64" rx="15" fill="#5B3FD0"/><path fill="#fff" d="M22 13H42A9 9 0 0 1 51 22V35A9 9 0 0 1 42 44H31L19 54V43.5A9 9 0 0 1 13 35V22A9 9 0 0 1 22 13Z"/><path fill="#DC143C" d="M13 28.5H51V35A9 9 0 0 1 42 44H31L19 54V43.5A9 9 0 0 1 13 35Z"/></svg>
+    polishkurs.com
+  </div>
+  <div class="og">
+    <h1>Zdam, bo <em class="swipe">znam!</em></h1>
+    <figure class="snap">
+      <img src="../src/assets/img/irena-800.jpg" alt="">
+      <figcaption class="pen">Irena Górska</figcaption>
+    </figure>
+  </div>
+</body>
+</html>
