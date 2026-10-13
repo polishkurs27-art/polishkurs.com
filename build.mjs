@@ -21,11 +21,19 @@ await mkdir(at('dist/assets/video'), { recursive: true });
 await cp(at('src/assets'), at('dist/assets'), { recursive: true });
 for (const f of ['styles.css', 'main.js']) await cp(at('src', f), at('dist/assets', f));
 
-// Most-viewed Shorts first. YouTube keeps a "popular Shorts" list for every channel (UUPS + channel id);
-// the plain upload feed (latest 15, ranked here by views) and the pinned list in shared.json are fallbacks.
+// Most-viewed Shorts first. YouTube keeps a "popular Shorts" list for every channel (UUPS + channel id).
+// YouTube's feeds go down now and then, so each one is tried a few times, and if none answers the build
+// keeps the videos the live site already shows; the pinned list in shared.json is the last resort.
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 async function readFeed(query) {
-  const res = await fetch(`https://www.youtube.com/feeds/videos.xml?${query}`, { signal: AbortSignal.timeout(8000) });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  let res;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    res = await fetch(`https://www.youtube.com/feeds/videos.xml?${query}`, { signal: AbortSignal.timeout(8000) }).catch(() => null);
+    if (res?.ok) break;
+    if (attempt < 3) await sleep(3000);
+  }
+  if (!res?.ok) throw new Error(res ? `HTTP ${res.status}` : 'no response');
   return [...(await res.text()).matchAll(/<entry>([\s\S]*?)<\/entry>/g)]
     .map(([, e]) => ({
       id: e.match(/<yt:videoId>([\w-]{11})<\/yt:videoId>/)?.[1],
@@ -34,6 +42,13 @@ async function readFeed(query) {
       short: /href="https:\/\/www\.youtube\.com\/shorts\//.test(e),
     }))
     .filter((v) => v.id && v.short);
+}
+
+async function publishedVideos() {
+  const res = await fetch(`${shared.site.url}/`, { signal: AbortSignal.timeout(8000) });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const ids = [...(await res.text()).matchAll(/data-video="([\w-]{11})"/g)].map((m) => m[1]);
+  return [...new Set(ids)].map((id) => ({ id, title: '', views: 0 }));
 }
 
 async function topVideos() {
@@ -46,6 +61,11 @@ async function topVideos() {
     } catch (err) {
       console.warn(`! YouTube feed "${query}" unavailable (${err.message})`);
     }
+  }
+  const live = await publishedVideos().catch(() => []);
+  if (live.length >= count) {
+    console.warn('! Keeping the videos the live site already shows');
+    return live.slice(0, count);
   }
   console.warn('! Using the pinned video list from shared.json');
   return fallback.slice(0, count).map((id) => ({ id, title: '', views: 0 }));
