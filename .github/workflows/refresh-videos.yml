@@ -1,0 +1,53 @@
+# Once a week, checks which of the channel's YouTube Shorts are the most viewed.
+# When the top six change, the new list is saved in content/shared.json, and
+# Netlify rebuilds the site (it rebuilds on every change to this repository).
+name: Weekly video refresh
+
+on:
+  schedule:
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Find the current most-viewed videos
+        run: node build.mjs | tee build.log
+      - name: Save the list if it changed
+        run: |
+          node -e '
+            const fs = require("fs");
+            const line = fs.readFileSync("build.log", "utf8").split("\n").find((l) => l.startsWith("Videos by views:")) || "";
+            const ids = [...line.matchAll(/([\w-]{11}) \((\d+)\)/g)].filter((m) => m[2] !== "0").map((m) => m[1]);
+            if (ids.length < 6) { console.log("YouTube feed unavailable, nothing to update"); process.exit(0); }
+            const p = "content/shared.json", before = fs.readFileSync(p, "utf8");
+            const after = before.replace(/"fallback": \[[^\]]*\]/, `"fallback": [${ids.map((i) => JSON.stringify(i)).join(", ")}]`);
+            if (after === before) { console.log("Most-viewed videos unchanged"); process.exit(0); }
+            fs.writeFileSync(p, after);
+            console.log("Most-viewed videos changed:", ids.join(", "));
+          '
+          if ! git diff --quiet; then
+            git config user.name "polishkurs27-art"
+            git config user.email "342209436+polishkurs27-art@users.noreply.github.com"
+            git commit -am "Weekly refresh: most-viewed videos changed"
+            git push
+          fi
+
+  # GitHub switches scheduled runs off after 60 days without repository activity.
+  # Re-enabling the workflow from inside each scheduled run resets that timer.
+  keep-schedule-alive:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/refresh-videos.yml/enable"
+        env:
+          GH_TOKEN: ${{ github.token }}
