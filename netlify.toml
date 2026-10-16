@@ -1,0 +1,7 @@
+# Build settings for Netlify (used only if the site is hosted there).
+[build]
+  command = "node build.mjs"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
